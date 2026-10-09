@@ -29,7 +29,7 @@ footer{background:#fffdfb;text-align:center;padding:20px;color:var(--muted);font
 <script>
 const WHATSAPP_NUMBER = "923323693137";
 const products = [
-{id:"AZ001",name:"Bin Saeed Lawn 3pc",category:"Lawn",price:3350,description:"Stitched lawn 3-piece",style:"p1",art:"Bin Saeed"},
+{id:"AZ001",name:"Bin Saeed Lawn 3pc",category:"Lawn",price:3350,description:"Stitched lawn 3-piece",style:"p1",art:"Bin Saeed"},IMG_20260923_090140.jpg,IMG_20260923_090144.jpg,IMG_20260923_090138.jpg
 {id:"AZ002",name:"Classic Khaddar Suit",category:"Khaddar",price:3200,description:"Seasonal texture • Unstitched",style:"p2",art:"Classic Khaddar"},
 {id:"AZ003",name:"Embroidered Suit",category:"Embroidered",price:3950,description:"Elegant detailing • 3-piece",style:"p3",art:"Embroidered"},
 {id:"AZ004",name:"Pastel Lawn Suit",category:"Lawn",price:2650,description:"Soft colours • Everyday wear",style:"p4",art:"Pastel Lawn"},
@@ -42,7 +42,8 @@ function renderProducts(){
  const q=document.getElementById("search").value.toLowerCase();
  const c=document.getElementById("category").value;
  const list=products.filter(p=>(c==="all"||p.category===c)&&(p.name+" "+p.description+" "+p.category).toLowerCase().includes(q));
- document.getElementById("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="productart ${p.style}">${p.art}</div><span class="category">${p.category} · ${p.id}</span><h3>${p.name}</h3><p class="desc">${p.description}</p><div class="price">${money(p.price)}</div><button class="btn" onclick="addToCart('${p.id}')">Add to Cart</button></article>`).join(""):'<p>No matching products. Try another search.</p>';
+ document.getElementById("products").innerHTML
+document.getElementById("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="productart ${p.style}">${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover">` : p.art}</div><span class="category">${p.category} · ${p.id}</span><h3>${p.name}</h3><p class="desc">${p.description}</p><div class="price">${money(p.price)}</div><button class="btn" onclick="addToCart('${p.id}')">Add to Cart</button></article>`).join(""):'<p>No matching products. Try another search.</p>';
 }
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();toast("Added to cart");}
 function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
